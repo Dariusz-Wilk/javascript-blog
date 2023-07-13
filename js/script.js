@@ -24,11 +24,9 @@
 
 		/* [DONE] get 'href' attribute from the clicked link */
 		const href = clickedElement.getAttribute('href');
-		console.log(href);
 
 		/* [DONE] find the correct article using the selector (value of 'href' attribute) */
 		const articleToShow = document.querySelector(href);
-		console.log(articleToShow);
 
 		/* [DONE] add class 'active' to the correct article */
 		articleToShow.classList.add('active');
@@ -40,11 +38,10 @@
 		link.addEventListener('click', titleClickHandler);
 	}
 
-	const optArticleSelector = '.post';
-	const optTitleSelector = '.post-title';
-	const optTitleListSelector = '.titles';
-
 	function generateTitleLinks() {
+		const optArticleSelector = '.post';
+		const optTitleSelector = '.post-title';
+		const optTitleListSelector = '.titles';
 		/* [DONE] remove contents of titleList */
 		document.querySelector(optTitleListSelector).innerHTML = '';
 
@@ -54,16 +51,13 @@
 		for (let article of articles) {
 			/* [DONE] get the article id */
 			const articlesID = article.getAttribute('id');
-			console.log(articlesID);
 
 			/* [DONE] find the title element */
 			/* [DONE] get the title from the title element */
 			const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-			console.log(articleTitle);
 
 			/* [DONE] create HTML of the link */
 			const linkHTML = `<li><a href="#${articlesID}"><span>${articleTitle}</span></a></li>`;
-			console.log(linkHTML);
 
 			/* [DONE] insert link into titleList */
 			document
