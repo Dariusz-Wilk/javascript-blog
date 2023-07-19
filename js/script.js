@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 'use strict';
 
 {
@@ -32,7 +33,7 @@
 		articleToShow.classList.add('active');
 	};
 
-	function generateTitleLinks() {
+	const generateTitleLinks = function () {
 		const optArticleSelector = '.post';
 		const optTitleSelector = '.post-title';
 		const optTitleListSelector = '.titles';
@@ -64,7 +65,7 @@
 		for (let link of links) {
 			link.addEventListener('click', titleClickHandler);
 		}
-	}
+	};
 
 	generateTitleLinks();
 }
