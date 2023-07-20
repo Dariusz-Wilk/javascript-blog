@@ -6,6 +6,7 @@
 	const optTitleSelector = '.post-title';
 	const optTitleListSelector = '.titles';
 	const optArticleTagsSelector = '.post-tags .list';
+	const optArticleAuthorSelector = '.post-author';
 
 	const titleClickHandler = function (event) {
 		event.preventDefault();
@@ -160,4 +161,39 @@
 	};
 
 	addClickListenersToTags();
+
+	const generateAuthors = function () {
+		const allArticles = document.querySelectorAll(optArticleSelector);
+
+		for (let article of allArticles) {
+			const authorWrapper = article.querySelector(optArticleAuthorSelector);
+			const author = article.getAttribute('data-author');
+			const authorText = author.replace('-', ' ');
+
+			const html = `<a href="#author-${author}">${authorText}</a>`;
+			authorWrapper.insertAdjacentHTML('afterbegin', html);
+		}
+	};
+
+	generateAuthors();
+
+	const authorClickHandler = function (event) {
+		event.preventDefault();
+
+		const clickedElement = this;
+		const href = clickedElement.getAttribute('href');
+		const author = href.replace('#author-', '');
+
+		generateTitleLinks(`[data-author="${author}"`);
+	};
+
+	const addClickListenersToAuthor = function () {
+		const allAuthorLinks = document.querySelectorAll('.post-author a');
+
+		for (let authorLink of allAuthorLinks) {
+			authorLink.addEventListener('click', authorClickHandler);
+		}
+	};
+
+	addClickListenersToAuthor();
 }
