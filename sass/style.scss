@@ -80,6 +80,14 @@ body {
 
 /* Lists */
 
+.titles,
+.tags,
+.authors {
+	.active {
+		margin-left: 10px;
+	}
+}
+
 .list {
 	list-style-type: none;
 	margin: 0;
@@ -91,7 +99,6 @@ body {
 	}
 	.active {
 		font-weight: bold;
-		margin-left: 10px;
 	}
 }
 
