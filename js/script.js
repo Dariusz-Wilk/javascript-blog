@@ -8,6 +8,7 @@
 	const optArticleTagsSelector = '.post-tags .list';
 	const optArticleAuthorSelector = '.post-author';
 	const optTagsListSelector = '.tags.list';
+	const optAuthorsListSelector = '.authors';
 	const optCloudClassCount = 5;
 	const optCloudClassPrefix = 'tag-size-';
 
@@ -230,15 +231,33 @@
 
 	const generateAuthors = function () {
 		const allArticles = document.querySelectorAll(optArticleSelector);
+		const authorsListWrapper = document.querySelector(optAuthorsListSelector);
+
+		const allAuthors = {};
 
 		for (let article of allArticles) {
 			const authorWrapper = article.querySelector(optArticleAuthorSelector);
 			const author = article.getAttribute('data-author');
 			const authorText = author.replace('-', ' ');
 
+			if (!allAuthors[authorText]) {
+				allAuthors[authorText] = 1;
+			} else {
+				allAuthors[authorText]++;
+			}
+
 			const html = `<a href="#author-${author}">${authorText}</a>`;
 			authorWrapper.insertAdjacentHTML('afterbegin', html);
 		}
+
+		let listAuthorHTML = '';
+		for (let author in allAuthors) {
+			listAuthorHTML += `<li><a href="#author-${author.replace(
+				' ',
+				'-'
+			)}">${author} (${allAuthors[author]})</a></li>`;
+		}
+		authorsListWrapper.innerHTML = listAuthorHTML;
 	};
 
 	generateAuthors();
@@ -251,10 +270,23 @@
 		const author = href.replace('#author-', '');
 
 		generateTitleLinks(`[data-author="${author}"`);
+
+		const activeAuthorLinks = document.querySelectorAll(
+			'a.active[href^="#author-"'
+		);
+
+		for (let activeAuthorLink of activeAuthorLinks) {
+			activeAuthorLink.classList.remove('active');
+		}
+
+		const allAuthorLinks = document.querySelectorAll(`a[href="${href}"`);
+		for (let authorLink of allAuthorLinks) {
+			authorLink.classList.add('active');
+		}
 	};
 
 	const addClickListenersToAuthor = function () {
-		const allAuthorLinks = document.querySelectorAll('.post-author a');
+		const allAuthorLinks = document.querySelectorAll('a[href^="#author-"');
 
 		for (let authorLink of allAuthorLinks) {
 			authorLink.addEventListener('click', authorClickHandler);
