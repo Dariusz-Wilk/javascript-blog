@@ -96,7 +96,6 @@
 		let minPlusSingleRange = params.min;
 
 		for (let i = 1; minPlusSingleRange < params.max; i++) {
-			console.log(`minPlusSingleRange:` + minPlusSingleRange);
 			if (
 				count >= minPlusSingleRange &&
 				count <= minPlusSingleRange + singleRange
@@ -156,7 +155,6 @@
 		const tagList = document.querySelector(optTagsListSelector);
 
 		const tagsParams = calculateTagsParams(allTags);
-		console.log('tagsParams:', tagsParams);
 
 		/* [NEW] create variable for all links HTML code */
 		let allTagsHTML = '';
@@ -167,7 +165,7 @@
 			allTagsHTML += `<li><a href="#tag-${tag}" class="${calculateTagClass(
 				allTags[tag],
 				tagsParams
-			)}">${tag} <span>(${allTags[tag]})</span></a></li>`;
+			)}">${tag}</a></li>`;
 		}
 		/* [NEW] END LOOP: for each tag in allTags: */
 

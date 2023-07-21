@@ -81,7 +81,6 @@ body {
 /* Lists */
 
 .titles,
-.tags,
 .authors {
 	.active {
 		margin-left: 10px;
@@ -99,6 +98,32 @@ body {
 	}
 	.active {
 		font-weight: bold;
+	}
+}
+
+.tags {
+	li {
+		display: inline-block;
+		margin: 0 4px;
+	}
+	.tag-size-1 {
+		color: #853535;
+	}
+	.tag-size-2 {
+		font-size: 22px;
+		color: #212577;
+	}
+	.tag-size-3 {
+		font-size: 28px;
+		color: #0b5a0f;
+	}
+	.tag-size-4 {
+		font-size: 34px;
+		color: #5f0b79;
+	}
+	.tag-size-5 {
+		font-size: 42px;
+		color: #b4820c;
 	}
 }
 
