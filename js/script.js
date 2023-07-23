@@ -2,6 +2,23 @@
 'use strict';
 
 {
+	const toggleSwitch = document.querySelector('input[type="checkbox"]');
+	const toggleIcon = document.getElementById('toggle-icon');
+
+	const switchDarkLightMode = function (event) {
+		if (event.target.checked) {
+			document.documentElement.setAttribute('data-mode', 'dark');
+			toggleIcon.children[0].textContent = 'Dark Mode';
+			toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+		} else {
+			document.documentElement.setAttribute('data-mode', 'light');
+			toggleIcon.children[0].textContent = 'Light Mode';
+			toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+		}
+	};
+
+	toggleSwitch.addEventListener('change', switchDarkLightMode);
+
 	const templates = {
 		articleLink: Handlebars.compile(
 			document.querySelector('#template-article-link').innerHTML
