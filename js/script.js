@@ -297,7 +297,7 @@
 		for (let article of allArticles) {
 			const authorWrapper = article.querySelector(select.article.author);
 			const author = article.getAttribute('data-author');
-			const authorText = author.replace('-', ' ');
+			const authorText = author.split('-').join(' ');
 
 			if (!allAuthors[authorText]) {
 				allAuthors[authorText] = 1;
@@ -310,12 +310,11 @@
 			authorWrapper.insertAdjacentHTML('afterbegin', authorPostLinkHTML);
 		}
 
-		// let listAuthorHTML = '';
 		const listAuthorsData = { authors: [] };
 
 		for (let author in allAuthors) {
 			listAuthorsData.authors.push({
-				author: author.replace(' ', '-'),
+				author: author.split(' ').join('-'),
 				authorName: author,
 				count: allAuthors[author],
 			});
